@@ -3,19 +3,20 @@ class eventEmitter {
 		this.eventBuffer = new Array()
 	}
 	emit(string) {
-		let st = string + ''
+		let st = string + ''//if it is not a string we should throw an error instead of this
         try {
-        	setTimeout(this.st (),0)
+        	setTimeout(this.st,0)
         } catch (e){
         	this.eventBuffer.push(st)
         }
 	}
 	on(string, func){
 		let st = string + ''
-		for (let i=0; i<this.eventBuffer; i++){
+		for (let i=0; i<this.eventBuffer.length; i++){
 			if (st == this.eventBuffer[i]){
 				this.eventBuffer.splice(i,1)
-				setTimeout(func(),0)
+				setTimeout(func, 0)
+				//this.st = func
 				break
 			} else {}
 		}
@@ -25,13 +26,13 @@ class eventEmitter {
 
 let goose = new eventEmitter()
 
-  goose.on('goo', () => {
-  	console.log('goose')
-  	console.log(this.a)
-  })
-
+let foo = () => {
+	this.a = 1
+	console.log('foo')
+    goose.on('goo', () => {
+    	console.log('goose')
+    	console.log(this.a)
+    })
+ }
+foo()
 goose.emit('goo')
-asas
-
-
-
